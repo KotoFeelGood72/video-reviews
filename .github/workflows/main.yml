@@ -26,9 +26,5 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.MAIN_SECRETS_KEY }}
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
-          source: "."
+          source: "/dist"
           target: "/var/www/html/front/"
-      - name: Start the app
-        run: |
-          cd /var/www/html/front/video-reviews
-          npm run serve
