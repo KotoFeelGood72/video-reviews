@@ -5,6 +5,7 @@
 			<li v-for="(item, i ) in nav" :key="i + 'nav'">
 				<router-link :to="`/${item.link}`">{{item.name}}</router-link>
 			</li>
+			<p>fooooo</p>
 		</ul>
 	</nav>
     <router-view></router-view>
