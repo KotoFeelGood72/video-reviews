@@ -20,9 +20,9 @@ jobs:
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
           source: "."
-          target: "/var/www/html/dist/"
+          target: "/var/www/html/front/"
       - name: Start the app
         run: |
-          cd /var/www/html/
+          cd /var/www/html/front/${APP_NAME}
           npm install
           npm run serve &
