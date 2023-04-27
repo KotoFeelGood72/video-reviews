@@ -1,35 +1,24 @@
-name: Deploy to Staging
-
-on: 
+name: Deploy to server
+on:
   push:
     branches:
-      - master
+      - main
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Copy repository contents to remote server via scp
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        port: ${{ secrets.PORT }}
-        key: ${{ secrets.SSHKEY }}
-        source: "."
-        target: ${{ secrets.TARGET }}
-
-    - name: Executing remote command via ssh
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        port: ${{ secrets.PORT }}
-        key: ${{ secrets.SSHKEY }}
-        script: |
-              cd ${{secrets.TARGET}} && npm install
-              printf "%s" "${{secrets.STAGING_ENV}}" > "${{secrets.TARGET}}/.env.staging"
-              npm run build:staging
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Build the app
+        run: npm run build
+      - name: Deploy to server
+        uses: easingthemes/ssh-deploy@v2.2.2
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.SSHKEY }}
+          source: "dist/"
+          target: ${{ secrets.TARGET }}
