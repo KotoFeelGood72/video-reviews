@@ -207,7 +207,7 @@ export default {
     }
 }
 
-@media all and (orientation:landscape) {
+@media (max-width: 767px) and (orientation:landscape) {
     .reviews-video {
         &.expanded-video {
         width: auto!important;
