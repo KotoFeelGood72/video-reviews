@@ -6,7 +6,6 @@
 				<router-link :to="`/${item.link}`">{{item.name}}</router-link>
 			</li>
 		</ul>
-		<p>Good</p>
 	</nav>
     <router-view></router-view>
   </div>
