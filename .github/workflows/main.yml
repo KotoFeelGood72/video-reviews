@@ -21,8 +21,3 @@ jobs:
           REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
           source: "dist/"
           target: "/var/www/html/"
-      - name: Start the app
-        run: |
-          cd /var/www/html/
-          npm install
-          npm run serve &
