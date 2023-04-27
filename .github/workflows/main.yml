@@ -30,6 +30,5 @@ jobs:
           target: "/var/www/html/front/"
       - name: Start the app
         run: |
-          cd /var/www/html/front/${APP_NAME}
-          npm install
-          npm run build
+          cd /var/www/html/front/video-reviews
+          npm run serve
