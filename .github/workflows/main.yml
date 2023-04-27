@@ -17,7 +17,7 @@ jobs:
         uses: easingthemes/ssh-deploy@v2.2.2
         with:
           SSH_PRIVATE_KEY: ${{ secrets.MAIN_SECRETS_KEY }}
-          REMOTE_HOST: ${{ secrets.HOST }}
-          REMOTE_USER: ${{ secrets.USERNAME }}
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
           source: "dist/"
           target: "/var/www/html/"
