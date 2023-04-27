@@ -32,4 +32,4 @@ jobs:
         run: |
           cd /var/www/html/front/${APP_NAME}
           npm install
-          npm run serve &
+          npm run serve
