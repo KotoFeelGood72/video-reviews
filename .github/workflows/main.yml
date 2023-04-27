@@ -1,0 +1,23 @@
+name: Deploy to server
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Build the app
+        run: npm run build
+      - name: Deploy to server
+        uses: easingthemes/ssh-deploy@v2.2.2
+        with:
+          ssh_private_key: ${{ secrets.MAIN_SECRETS_KEY }}
+          remote_host: ${{ secrets.SERVER_HOST }}
+          remote_user: ${{ secrets.SERVER_USER }}
+          source: "dist/"
+          target: "/var/www/html/"
