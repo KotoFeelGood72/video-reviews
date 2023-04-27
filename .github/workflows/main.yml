@@ -19,5 +19,10 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.MAIN_SECRETS_KEY }}
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
-          source: "dist/"
-          target: "/var/www/html/"
+          source: "."
+          target: "/var/www/html/dist/"
+      - name: Start the app
+        run: |
+          cd /var/www/html/
+          npm install
+          npm run serve &
