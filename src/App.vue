@@ -26,8 +26,8 @@ export default {
 				link: 'embed',
 			},
 			{
-				name: 'Comming Soon',
-				link: 'soon',
+				name: 'Sign UP',
+				link: 'sign-up',
 			},
 		]
 	}

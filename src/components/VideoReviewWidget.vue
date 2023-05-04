@@ -16,7 +16,7 @@
         type="button" 
         @mouseover="isHovered = true"
         @mouseout="isHovered = false"
-        :style="isHovered ? hover : btn"
+        :style="isHovered ? btn.hover : btn.static"
         >
         {{btnName}} 
         </button>
@@ -44,19 +44,21 @@ export default {
       btnName: 'Целевое действие',
       isHovered: false,
       btn: {
-        backgroundColor: '#DE0101',
-        color: '#fff',
-        padding: '17px 67px',
-        fontSize: '15px',
-        fontWeight: '500'
+        static: {
+          backgroundColor: '#DE0101',
+          color: '#fff',
+          padding: '17px 67px',
+          fontSize: '15px',
+          fontWeight: '500'
+        },
+        hover: {
+          backgroundColor: '#171717',
+          color: '#fff',
+          padding: '17px 67px',
+          fontSize: '15px',
+          fontWeight: '500'
+        }
       },
-      hover: {
-        backgroundColor: '#171717',
-        color: '#fff',
-        padding: '17px 67px',
-        fontSize: '15px',
-        fontWeight: '500'
-      }
     };
   },
   mounted() {
@@ -74,7 +76,6 @@ export default {
         clickToPlay: false,
       });
       this.plyrInstance.on("timeupdate", this.onTimeUpdate);
-
       if(!this.isExpanded) {
           this.plyrInstance.muted = true;
       }
@@ -109,14 +110,17 @@ export default {
 
 
 .reviews-video {
-    position: fixed;
+    position: absolute;
     bottom: 10%;
     left: 3%;
     border-radius: 15px;
     overflow: hidden;
-    cursor: pointer;
     border: 2px solid #dddddd;
     transition: all .3s ease;
+    cursor: pointer;
+    &:hover {
+      border-color: #dddddd6e;
+    }
 
     video {
         width: 100%;
@@ -186,35 +190,34 @@ export default {
     width: 100%;
     max-width: 95%;
     button {
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all .3s ease;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all .3s ease;
     }
 }
 
 @media(max-width: 1024px) {
     .reviews-video {
         &.expanded-video {
-        // width: auto!important;
-        max-width: 300px;
-        max-height: 500px;
-        border-color: #171717;
-    }
+          max-width: 300px;
+          max-height: 500px;
+          border-color: #171717;
+        }
     }
 }
 
 @media (max-width: 767px) and (orientation:landscape) {
     .reviews-video {
         &.expanded-video {
-        width: auto!important;
-        max-width: 100%;
-        max-height: 80%;
-        border-color: #171717;
-    }
+          width: auto!important;
+          max-width: 100%;
+          max-height: 80%;
+          border-color: #171717;
+        }
     }
 }
 

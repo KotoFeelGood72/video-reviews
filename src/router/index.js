@@ -9,6 +9,13 @@ const routes = [
   {
     path: '/embed', component: () => import('@/views/VideoEmbed.vue')
   },
+  {
+    path: '/sign-up', component: () => import('@/views/SignUP.vue')
+  },
+  {
+    path: '/',
+    redirect: '/sign-up'
+  }
 ];
 
 
