@@ -10,7 +10,10 @@ const routes = [
     path: '/embed', component: () => import('@/views/VideoEmbed.vue')
   },
   {
-    path: '/sign-up', component: () => import('@/views/SignUP.vue')
+    path: '/register', component: () => import('@/views/auth/moduleRegister.vue')
+  },
+  {
+    path: '/login', component: () => import('@/views/auth/moduleLogin.vue')
   },
   {
     path: '/',

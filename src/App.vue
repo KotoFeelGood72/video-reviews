@@ -26,8 +26,12 @@ export default {
 				link: 'embed',
 			},
 			{
-				name: 'Sign UP',
-				link: 'sign-up',
+				name: 'Регистрация',
+				link: 'register',
+			},
+			{
+				name: 'Авторизация',
+				link: 'login',
 			},
 		]
 	}
