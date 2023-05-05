@@ -25,6 +25,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import { required, email, sameAs } from 'vuelidate/lib/validators';
 
 export default {
   data() {
@@ -39,6 +40,24 @@ export default {
   },
   computed: {
     ...mapGetters(['getUser']),
+      isFormValid() {
+        return !this.$v.$invalid;
+      },
+  },
+  validations: {
+    email: {
+      required,
+      email
+    },
+    name: {
+      required
+    },
+    password: {
+      required
+    },
+    confirmPassword: {
+      sameAsPassword: sameAs('password')
+    }
   },
   methods: {
     ...mapActions(['postUser']),
@@ -50,11 +69,14 @@ export default {
         confirm: this.form.confirm,
       };
 
-      if(formData) {
+      if (this.isFormValid) {
         this.postUser(formData);
-        console.log('Good', formData);
-
+        // return
       }
+        // return
+      // if(formData) {
+      //   console.log('Good', formData);
+      // }
     },
   },
 };

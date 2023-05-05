@@ -17,9 +17,9 @@ export default {
     actions: {
         async postUser({commit}, user) {
             try {
-                user.action = 'ping';
+                user.action = 'userAuth';
                 const response = await axios.post('https://roblitetmoub.beget.app/', user);
-                commit('setUser', response.user)
+                commit('setUser', response.data.user)
             } catch (error) {
                 console.log(error);
             }
