@@ -78,7 +78,7 @@ export default {
       this.$v.form.$touch()
 
       if(this.$v.form.$error) {
-        console.log('Validation good')
+        console.log('Validation false')
       } else {
         const formData = {
           name: this.form.name,

@@ -1,29 +1,96 @@
 <template>
-  <section class="register">
-    <form class="form-register">
+  <section class="register auth">
+    <form class="form-register" @submit.prevent="registerUser">
+      <h3>Авторизация</h3>
       <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <input type="email" class="form-control" placeholder="Ваш E-Mail" v-model.trim="form.email" :class="$v.form.email.$error ? 'is-invalid' : ''"/>
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+        <b-icon
+          class="show-pass"
+          :icon="showPassword ? 'eye-slash-fill' : 'eye-fill'"
+          @click="showPassword = !showPassword"
+          :class="$v.form.password.$error ? 'is-hidden' : ''"
+        />
+        <input :type="showPassword ? 'text' : 'password'" class="form-control" placeholder="Ваш пароль" v-model.trim="form.password" :class="$v.form.password.$error ? 'is-invalid' : ''"/>
       </div>
-      <div class="form-group form-check">
+      <div class="form-group">
+        <input :type="showPassword ? 'text' : 'password'" class="form-control" placeholder="Подвердите пароль" v-model.trim="form.confirm" :class="$v.form.confirm.$error ? 'is-invalid' : ''"/>
+      </div>
+      <div class="form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Войти</button>
     </form>
   </section>
 </template>
 
 <script>
-  export default {
-    
-  }
+import { mapActions, mapGetters } from 'vuex';
+import { validationMixin } from 'vuelidate';
+import { required, email, sameAs, minLength } from 'vuelidate/lib/validators';
+
+export default {
+  mixins: [validationMixin],
+  data() {
+    return {
+      showPassword: false,
+      showIconPassword: true,
+      form: {
+        email: '',
+        password: '',
+        confirm: '',
+      },
+    };
+  },
+  validations: {
+    form: {
+      name: {
+        required, 
+        minLength: minLength(3)
+      },
+      email: {
+        required, 
+        email
+      },
+      password: {
+        required, 
+        minLength: minLength(3)
+      },
+      confirm: {
+        required, 
+        minLength: minLength(3), 
+        sameAsPassword: sameAs('password'),
+      }
+    },
+  },
+  computed: {
+    ...mapGetters(['getUser']),
+  },
+  methods: {
+    ...mapActions(['postUser']),
+    registerUser() {
+      this.$v.form.$touch()
+
+      if(this.$v.form.$error) {
+        console.log('Validation false')
+      } else {
+        const formData = {
+          email: this.form.email,
+          password: this.form.password,
+          confirm: this.form.confirm,
+        };
+        this.postUser(formData);
+        console.log(formData)
+
+      }
+      
+    },
+  },
+};
 </script>
+
 
 <style scoped lang="scss">
   .register {
@@ -39,5 +106,42 @@
     max-width: 500px;
     width: 100%;
     border-radius: 10px;
+  }
+
+  .auth {
+    h3 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    position: relative;
+
+    input {
+      padding: 12px 20px;
+      font-size: 18px;
+    }
+  }
+
+  .show-pass {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 20px;
+    font-size: 30px;
+    &.is-hidden {
+      display: none;
+    }
+    
+  }
+
+  .form-check {
+    font-size: 18px;
+    margin: 20px 0;
+    user-select: none;
   }
 </style>
