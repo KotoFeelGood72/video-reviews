@@ -1,5 +1,5 @@
 <template>
-  <div class="reviews-video" @click="stateToggleVideo" :class="isExpanded ? 'expanded-video' : 'collapse'">
+  <div class="reviews-video" @click="stateToggleVideo" :class="isExpanded ? 'expanded-video' : 'collapses'">
     <div v-show="isExpanded" @click.stop class="controls-video">
         <div class="reviews_videoTime">{{ formattedTime }}</div>
         <div class="close-video toggleState_btn" @click="stateToggleVideo">
@@ -128,7 +128,7 @@ export default {
         object-fit: cover;
     }
 
-    &.collapse {
+    &.collapses {
         width: 130px;
         height: 180px;
     }

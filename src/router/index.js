@@ -18,6 +18,9 @@ const routes = [
   {
     path: '/not-found', component: () => import('@/views/not-found.vue')
   },
+  {
+    path: '/reviews', component: () => import('@/views/api/module-reviews.vue')
+  },
   { 
     path: '*', 
     redirect: '/not-found' 
