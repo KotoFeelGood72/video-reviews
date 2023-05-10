@@ -15,5 +15,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+.layout-default {
+	background-color: #0F0F23;
+}
 </style>

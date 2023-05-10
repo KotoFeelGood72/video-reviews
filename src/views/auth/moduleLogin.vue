@@ -14,11 +14,15 @@
         />
         <input :type="showPassword ? 'text' : 'password'" class="form-control" placeholder="Ваш пароль" v-model.trim="form.password" :class="$v.form.password.$error ? 'is-invalid' : ''"/>
       </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
+      <div class="form-bottom">
+        <div class="form-btn">
+          <button type="submit" class="btn btn-primary">Войти</button>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Войти</button>
     </form>
   </section>
 </template>
@@ -86,17 +90,19 @@ export default {
   }
 
   .form-register {
-    box-shadow: 0 0 20px 0 #ccc;
-    padding: 60px 20px;
-    max-width: 500px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 60px 40px;
+    max-width: 550px;
     width: 100%;
     border-radius: 10px;
+    color: white;
   }
 
   .auth {
     h3 {
       font-size: 30px;
-      margin-bottom: 20px;
+      margin-bottom: 50px;
+      text-align: center;
     }
   }
 
@@ -125,8 +131,24 @@ export default {
   }
 
   .form-check {
-    font-size: 18px;
-    margin: 20px 0;
+    font-size: 16px;
+    // margin: 20px 0;
+    // padding: 10px 20px;
     user-select: none;
+  }
+
+  .form-btn {
+    margin-right: 30px;
+    button {
+      padding: 12px 40px;
+      font-size: 18px;
+    }
+  }
+
+  .form-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 30px 0 0 0;
   }
 </style>
