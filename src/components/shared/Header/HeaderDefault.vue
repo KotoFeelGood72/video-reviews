@@ -70,7 +70,7 @@
 	}
 
 	.header_logo {
-		margin-right: 30px;
+		margin-right: 60px;
 		max-width: 50px;
 		img {
 			width: 100%;
@@ -100,5 +100,42 @@
 			}
 		}
 
+	}
+
+	.header_nav {
+		ul {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			li {
+				a {
+
+					border-radius: 8px;
+					display: block;
+					font-size: 18px;
+					opacity: .7;
+					position: relative;
+					padding-bottom: 1px;
+					&:before {
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						width: 0%;
+						border-bottom: 2px solid #fff;
+						content: '';
+						transition: all .3s ease;
+					}
+					&.router-link-exact-active, &:hover {
+						opacity: 1;
+						&:before {
+							width: 100%;
+						}
+					}
+				}
+				&:not(:last-child) {
+					margin-right: 30px;
+				}
+			}
+		}
 	}
 </style>
