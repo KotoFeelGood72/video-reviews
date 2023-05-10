@@ -21,11 +21,11 @@ const routes = [
   { 
     path: '*', 
     redirect: '/not-found' 
+  },
+  {
+    path: '/',
+    redirect: '/register'
   }
-  // {
-  //   path: '/',
-  //   redirect: '/sign-up'
-  // }
 ];
 
 

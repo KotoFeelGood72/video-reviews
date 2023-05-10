@@ -87,7 +87,8 @@ export default {
           confirm: this.form.confirm,
         };
         this.postUser(formData);
-        console.log(formData)
+        this.$router.push('/login')
+        // console.log(formData)
 
       }
       
