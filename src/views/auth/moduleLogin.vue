@@ -14,9 +14,6 @@
         />
         <input :type="showPassword ? 'text' : 'password'" class="form-control" placeholder="Ваш пароль" v-model.trim="form.password" :class="$v.form.password.$error ? 'is-invalid' : ''"/>
       </div>
-      <div class="form-group">
-        <input :type="showPassword ? 'text' : 'password'" class="form-control" placeholder="Подвердите пароль" v-model.trim="form.confirm" :class="$v.form.confirm.$error ? 'is-invalid' : ''"/>
-      </div>
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
@@ -29,7 +26,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { validationMixin } from 'vuelidate';
-import { required, email, sameAs, minLength } from 'vuelidate/lib/validators';
+import { required, email, minLength } from 'vuelidate/lib/validators';
 
 export default {
   mixins: [validationMixin],
@@ -40,16 +37,11 @@ export default {
       form: {
         email: '',
         password: '',
-        confirm: '',
       },
     };
   },
   validations: {
     form: {
-      name: {
-        required, 
-        minLength: minLength(3)
-      },
       email: {
         required, 
         email
@@ -58,11 +50,6 @@ export default {
         required, 
         minLength: minLength(3)
       },
-      confirm: {
-        required, 
-        minLength: minLength(3), 
-        sameAsPassword: sameAs('password'),
-      }
     },
   },
   computed: {
@@ -79,11 +66,9 @@ export default {
         const formData = {
           email: this.form.email,
           password: this.form.password,
-          confirm: this.form.confirm,
         };
         this.postUser(formData);
         console.log(formData)
-
       }
       
     },
