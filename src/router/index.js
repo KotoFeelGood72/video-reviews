@@ -16,9 +16,12 @@ const routes = [
     path: '/login', component: () => import('@/views/auth/moduleLogin.vue')
   },
   {
-    path: '/',
-    redirect: '/sign-up'
-  }
+    path: '/:pathMath(.*)*', component: () => import('@/views/not-found.vue')
+  },
+  // {
+  //   path: '/',
+  //   redirect: '/sign-up'
+  // }
 ];
 
 

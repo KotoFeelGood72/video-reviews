@@ -3,16 +3,16 @@
     <form class="form-register" @submit.prevent="registerUser">
       <h3>Регистрация</h3>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Ваш ник" v-model="form.name">
+        <input type="text" class="form-control" placeholder="Ваш ник" v-model.trim="form.name" :class="$v.form.name.$error ? 'is-invalid' : ''"/>
       </div>
       <div class="form-group">
-        <input type="email" class="form-control" placeholder="Ваш E-Mail" v-model="form.email">
+        <input type="email" class="form-control" placeholder="Ваш E-Mail" v-model.trim="form.email" :class="$v.form.email.$error ? 'is-invalid' : ''"/>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" placeholder="Ваш пароль" v-model="form.password">
+        <input type="password" class="form-control" placeholder="Ваш пароль" v-model.trim="form.password" :class="$v.form.password.$error ? 'is-invalid' : ''"/>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" placeholder="Подвердите пароль" v-model="form.confirm">
+        <input type="password" class="form-control" placeholder="Подвердите пароль" v-model.trim="form.confirm" :class="$v.form.confirm.$error ? 'is-invalid' : ''"/>
       </div>
       <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -25,9 +25,11 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import { required, email, sameAs } from 'vuelidate/lib/validators';
+import { validationMixin } from 'vuelidate';
+import { required, email, sameAs, minLength } from 'vuelidate/lib/validators';
 
 export default {
+  mixins: [validationMixin],
   data() {
     return {
       form: {
@@ -38,45 +40,49 @@ export default {
       },
     };
   },
+  validations: {
+    form: {
+      name: {
+        required, 
+        minLength: minLength(3)
+      },
+      email: {
+        required, 
+        email
+      },
+      password: {
+        required, 
+        minLength: minLength(3)
+      },
+      confirm: {
+        required, 
+        minLength: minLength(3), 
+        sameAsPassword: sameAs('password'),
+      }
+    },
+  },
   computed: {
     ...mapGetters(['getUser']),
-      isFormValid() {
-        return !this.$v.$invalid;
-      },
-  },
-  validations: {
-    email: {
-      required,
-      email
-    },
-    name: {
-      required
-    },
-    password: {
-      required
-    },
-    confirmPassword: {
-      sameAsPassword: sameAs('password')
-    }
   },
   methods: {
     ...mapActions(['postUser']),
     registerUser() {
-      const formData = {
-        name: this.form.name,
-        email: this.form.email,
-        password: this.form.password,
-        confirm: this.form.confirm,
-      };
+      this.$v.form.$touch()
 
-      if (this.isFormValid) {
+      if(this.$v.form.$error) {
+        console.log('Validation good')
+      } else {
+        const formData = {
+          name: this.form.name,
+          email: this.form.email,
+          password: this.form.password,
+          confirm: this.form.confirm,
+        };
         this.postUser(formData);
-        // return
+        console.log(formData)
+
       }
-        // return
-      // if(formData) {
-      //   console.log('Good', formData);
-      // }
+      
     },
   },
 };
