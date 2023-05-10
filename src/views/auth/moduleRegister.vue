@@ -9,12 +9,18 @@
         <input type="email" class="form-control" placeholder="Ваш E-Mail" v-model.trim="form.email" :class="$v.form.email.$error ? 'is-invalid' : ''"/>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" placeholder="Ваш пароль" v-model.trim="form.password" :class="$v.form.password.$error ? 'is-invalid' : ''"/>
+        <b-icon
+          class="show-pass"
+          :icon="showPassword ? 'eye-slash-fill' : 'eye-fill'"
+          @click="showPassword = !showPassword"
+          :class="$v.form.password.$error ? 'is-hidden' : ''"
+        />
+        <input :type="showPassword ? 'text' : 'password'" class="form-control" placeholder="Ваш пароль" v-model.trim="form.password" :class="$v.form.password.$error ? 'is-invalid' : ''"/>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" placeholder="Подвердите пароль" v-model.trim="form.confirm" :class="$v.form.confirm.$error ? 'is-invalid' : ''"/>
+        <input :type="showPassword ? 'text' : 'password'" class="form-control" placeholder="Подвердите пароль" v-model.trim="form.confirm" :class="$v.form.confirm.$error ? 'is-invalid' : ''"/>
       </div>
-      <div class="form-group form-check">
+      <div class="form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
       </div>
@@ -32,6 +38,8 @@ export default {
   mixins: [validationMixin],
   data() {
     return {
+      showPassword: false,
+      showIconPassword: true,
       form: {
         name: '',
         email: '',
@@ -110,5 +118,35 @@ export default {
       font-size: 30px;
       margin-bottom: 20px;
     }
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    position: relative;
+
+    input {
+      padding: 12px 20px;
+      font-size: 18px;
+    }
+  }
+
+  .show-pass {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 20px;
+    font-size: 30px;
+    &.is-hidden {
+      display: none;
+    }
+    
+  }
+
+  .form-check {
+    font-size: 18px;
+    margin: 20px 0;
+    user-select: none;
   }
 </style>
