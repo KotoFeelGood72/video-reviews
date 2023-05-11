@@ -21,6 +21,9 @@ const routes = [
   {
     path: '/reviews', component: () => import('@/views/api/module-reviews.vue')
   },
+  {
+    path: '/admin/dashboard', component: () => import('@/views/admin/AdminDashboard.vue')
+  },
   { 
     path: '*', 
     redirect: '/not-found' 
