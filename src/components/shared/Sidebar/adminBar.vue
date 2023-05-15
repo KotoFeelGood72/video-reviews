@@ -15,21 +15,20 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  // import { mapActions } from 'vuex'
   import SidebarNav from './SidebarNav';
   export default {
     data() {
       return {
         SidebarNav,
-        ex: {
-          el: 'Hui'
-        }
+        ex: {},
       }
     },
     methods: {
-      ...mapActions(['userExit']),
+      // ...mapActions(['userExit']),
       async handleUserExit() {
-        this.userExit(this.ex);
+        // this.userExit(this.ex);
+        this.$store.dispatch('userExit', {})
       }
     }
   }

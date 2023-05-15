@@ -35,7 +35,7 @@ export default {
             try {
                 exit.action = 'userLogout';
                 const response = await axios.post('https://roblitetmoub.beget.app/', exit)
-                commit('exitUser', response)
+                commit('exitUser', response.data)
             } catch (error) {
                 console.log(error);
             }
