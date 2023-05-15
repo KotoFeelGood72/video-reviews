@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '@/router'
 
 export default {
     state: {
@@ -28,6 +29,7 @@ export default {
 
                 if(response.data.result) {
                     console.log(response.data.result)
+                    router.push('/');
                 }
             } catch (error) {
                 console.log(error);

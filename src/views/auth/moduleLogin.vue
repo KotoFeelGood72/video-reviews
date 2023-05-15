@@ -1,6 +1,6 @@
 <template>
   <section class="register auth">
-    <form class="form-register" @submit.prevent="registerUser">
+    <form class="form-register" @submit.prevent="authUser">
       <h3>Авторизация</h3>
       <div class="form-group">
         <input type="email" class="form-control" placeholder="Ваш E-Mail" v-model.trim="form.email" :class="$v.form.email.$error ? 'is-invalid' : ''"/>
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     ...mapActions(['postUser']),
-    registerUser() {
+    authUser() {
       this.$v.form.$touch()
 
       if(this.$v.form.$error) {
