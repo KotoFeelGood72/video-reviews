@@ -27,7 +27,7 @@ export default {
                 commit('setUser', response.data.user)
                 commit('setUser', response.data.result)
 
-                if(response.data.result) {
+                if(response.data.result === true && response.data.auth === true) {
                     console.log(response.data.result)
                     router.push('/admin/dashboard/');
                 }
