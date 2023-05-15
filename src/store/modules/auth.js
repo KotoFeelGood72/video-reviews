@@ -29,7 +29,7 @@ export default {
 
                 if(response.data.result) {
                     console.log(response.data.result)
-                    router.push('/');
+                    router.push('/admin/dashboard/');
                 }
             } catch (error) {
                 console.log(error);
