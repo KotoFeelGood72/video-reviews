@@ -25,7 +25,7 @@ export default {
                 const response = await axios.post('https://roblitetmoub.beget.app/', user);
                 commit('setUser', response.data.user)
                 commit('setUser', response.data.result)
-                console.log('Good', response.data.result)
+                // console.log('Good', response.data.result)
             } catch (error) {
                 console.log(error);
             }
