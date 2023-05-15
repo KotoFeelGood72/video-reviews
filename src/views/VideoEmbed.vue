@@ -1,6 +1,5 @@
 <template>
     <div class="video-present">
-
         <div class="video_present--content">
             <h1>Плагин видео отзыва</h1>
             <p>Arkada</p>

@@ -19,7 +19,8 @@
 					<nav class="user-nav">
 						<ul>
 							<li v-for="(item, i ) in User.nav" :key="i + 'nav'">
-								<router-link :to="`/${item.link}`">{{item.name}}</router-link>
+								<router-link :to="`/${item.link}`" v-if="item.link === 'admin/dashboard'"><b-icon :icon="item.name"/></router-link>
+								<router-link :to="`/${item.link}`" v-else>{{ item.name }}</router-link>
 							</li>
 						</ul>
 					</nav>
@@ -32,12 +33,12 @@
 	import HeaderNav from '@/components/shared/Header/HeaderNav'
 	import User from './User';
     export default {
-        data() {
-			return {
-				HeaderNav,
-				User,
-			}
-		},
+			data() {
+				return {
+					HeaderNav,
+					User,
+				}
+			},
     }
 </script>
 

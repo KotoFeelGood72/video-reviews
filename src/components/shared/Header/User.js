@@ -8,5 +8,9 @@ export default {
             name: 'Логин',
             link: 'login'
         },
+        {
+            name: 'person-circle',
+            link: 'admin/dashboard'
+        },
     ]
 }

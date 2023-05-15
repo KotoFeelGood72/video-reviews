@@ -1,24 +1,21 @@
 <template>
   <div id="app">
-		<default-layout v-if="$route.fullPath !== '/reviews'">
-				<router-view></router-view>
-		</default-layout>
-		<empty-layout v-else>
+		<component :is="layout">
 			<router-view></router-view>
-		</empty-layout>
+		</component>
   </div>
 </template>
 
 <script>
 
-import defaultLayout from '@/layouts/default-layout.vue';
-import EmptyLayout from './layouts/empty-layout.vue';
 export default {
   name: 'App',
-  components: {
-		defaultLayout,
-    EmptyLayout,
-  },
+	computed: {
+		layout() {
+				const layoutName = this.$route.meta.layout || 'default-layout';
+				return () => import(`@/layouts/${layoutName}`)
+		}
+	}
 
 }
 </script>

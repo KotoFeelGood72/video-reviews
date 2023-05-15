@@ -2,11 +2,15 @@ import axios from 'axios'
 
 export default {
     state: {
-        user: {}
+        user: {},
+        exit: {},
     },
     mutations: {
         setUser(state, user) {
             state.user = user
+        },
+        exitUser(state, exit) {
+            state.exit = exit
         }
     },
     getters: {
@@ -26,6 +30,15 @@ export default {
                 console.log(error);
             }
             
+        },
+        async userExit({commit}, exit) {
+            try {
+                exit.action = 'userLogout';
+                const response = await axios.post('https://roblitetmoub.beget.app/', exit)
+                commit('exitUser', response)
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 }
