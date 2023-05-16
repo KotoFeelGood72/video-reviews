@@ -90,7 +90,7 @@ export default {
           password: this.form.password,
           confirm: this.form.confirm,
         };
-        this.postUser(formData);
+        this.resiterUser(formData);
         console.log(formData)
 
       }
