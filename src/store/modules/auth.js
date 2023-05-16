@@ -41,8 +41,8 @@ export default {
                 const response = await axios.post('logout/', {})
                 commit('exitUser', response.data)
 
-                if(response.status === true) {
-                    console.log('Good logout', response.status)
+                if(response.data.status === true) {
+                    console.log('Good logout', response.data.status)
                     router.push('/');
                 }
             } catch (error) {
