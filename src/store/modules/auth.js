@@ -5,6 +5,7 @@ export default {
     state: {
         user: {},
         exit: {},
+        auth: {}
     },
     mutations: {
         setUser(state, user) {
@@ -35,10 +36,9 @@ export default {
             }
             
         },
-        async userExit({commit}, exit) {
+        async userExit({commit}) {
             try {
-                exit.action = 'userLogout';
-                const response = await axios.post('https://roblitetmoub.beget.app/', exit)
+                const response = await axios.post('logout', {})
                 commit('exitUser', response.data)
             } catch (error) {
                 console.log(error);
