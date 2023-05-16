@@ -22,13 +22,12 @@ export default {
     actions: {
         async postUser({commit}, user) {
             try {
-                user.action = 'userAuth';
-                const response = await axios.post('https://roblitetmoub.beget.app/', user);
+                const response = await axios.post('login/', user);
                 commit('setUser', response.data.user)
                 commit('setUser', response.data.result)
 
-                if(response.data.result === true && response.data.auth === true) {
-                    console.log(response.data.result)
+                if(response.data.status === true && response.data.auth === true) {
+                    console.log(response.data.status)
                     router.push('/admin/dashboard/');
                 }
             } catch (error) {

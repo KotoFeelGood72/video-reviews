@@ -7,17 +7,17 @@ export default {
     },
     {
       name: 'User',
-      link: '/admin/dashboard',
+      link: '/admin/accaount',
       icon: 'person-circle',
     },
     {
       name: 'Plugins',
-      link: '/admin/dashboard',
+      link: '/admin/plugins',
       icon: 'plugin',
     },
     {
       name: 'Notifications',
-      link: '/admin/dashboard',
+      link: '/admin/note',
       icon: 'bell',
     },
   ]
