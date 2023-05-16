@@ -91,7 +91,7 @@ export default {
           confirm: this.form.confirm,
         };
         this.postUser(formData);
-        // console.log(formData)
+        console.log(formData)
 
       }
       
