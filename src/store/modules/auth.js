@@ -28,7 +28,7 @@ export default {
                 commit('setUser', response.data.result)
 
                 if(response.data.status === true && response.data.auth === true) {
-                    console.log(response.data.status)
+                    console.log('Good login', response.status)
                     router.push('/admin/dashboard/');
                 }
             } catch (error) {
@@ -40,6 +40,11 @@ export default {
             try {
                 const response = await axios.post('logout/', {})
                 commit('exitUser', response.data)
+
+                if(response.status === true) {
+                    console.log('Good logout', response.status)
+                    router.push('/');
+                }
             } catch (error) {
                 console.log(error);
             }
