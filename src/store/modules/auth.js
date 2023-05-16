@@ -36,6 +36,22 @@ export default {
             }
             
         },
+
+        async resiterUser({commit}, user) {
+            try {
+                const response = await axios.post('register/', user);
+                commit('setUser', response.data.user)
+                commit('setUser', response.data.result)
+
+                if(response.data.status === true && response.data.auth === true) {
+                    console.log('Good login', response.data.status)
+                    router.push('/admin/dashboard/');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+            
+        },
         
         async userExit({commit}) {
             try {

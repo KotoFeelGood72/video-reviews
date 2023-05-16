@@ -77,7 +77,7 @@ export default {
     ...mapGetters(['getUser']),
   },
   methods: {
-    ...mapActions(['postUser']),
+    ...mapActions(['resiterUser']),
     registerUser() {
       this.$v.form.$touch()
 
