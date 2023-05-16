@@ -38,7 +38,7 @@ export default {
         },
         async userExit({commit}) {
             try {
-                const response = await axios.post('logout', {})
+                const response = await axios.post('logout/', {})
                 commit('exitUser', response.data)
             } catch (error) {
                 console.log(error);
