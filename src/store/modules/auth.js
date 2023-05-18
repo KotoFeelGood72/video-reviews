@@ -1,36 +1,41 @@
-// import axios from '@/../axios.config'
 // import router from '@/router'
+// import axios from 'axios'
 
 export default {
     state: {
         exit: {},
-        auth: {}
+        auth: {},
+        user: null,
+        token: null
     },
     mutations: {
         exitUser(state, exit) {
             state.exit = exit
+        },
+        setUser(state, { user, token }) {
+            state.user = user;
+            state.token = token;
+            // localStorage.setItem('token', token);
+            // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         }
     },
     getters: {
-        getUser(state) {
-            return state.user
-        }
+        // getUser(state) {
+        //     return state.user
+        // }
     },
     actions: {
-        // async login({commit}, data) {
+        // async login({ commit }, user) {
         //     try {
-        //         const response = await axios.post('login', data)
-        //         // console.log(data)
-        //         commit('exitUser', data)
-        //         if(response.data.auth === true) {
-        //             console.log('Good login', response.data.status)
-        //             router.push('/admin/dashboard/');
-        //         }
+        //       const response = await axios.post('test', user);
+        //       const token = response.data.info.token; // Предположим, что токен возвращается в поле "token" объекта ответа
+        //       console.log(response.data, user, token)
+        //       commit('setUser', user);
         //     } catch (error) {
-        //         console.log(error);
+        //       console.error(error); // Отображение ошибки в консоли для отладки
+        //       // Обработка ошибки
         //     }
-            
-        // },
+        //   }
 
         // async resiterUser({commit}, user) {
         //     try {
