@@ -12,5 +12,9 @@ export default {
             name: 'person-circle',
             link: 'admin/dashboard'
         },
+        {
+            name: 'Подтверждение',
+            link: 'register/confirm'
+        },
     ]
 }

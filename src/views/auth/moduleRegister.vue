@@ -22,7 +22,7 @@
       </div>
       <div class="form-bottom">
         <div class="form-btn">
-          <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+          <button type="submit" class="btn btn-primary" v-b-modal.modal-1>Зарегистрироваться</button>
         </div>
         <div class="form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">

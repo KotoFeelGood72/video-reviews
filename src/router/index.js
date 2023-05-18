@@ -48,6 +48,13 @@ const routes = [
       layout: 'admin-layout'
     }
   },
+  {
+    path: '/register/confirm', 
+    component: () => import('@/views/auth/moduleConfirm.vue'),
+    meta: {
+      layout: 'default-layout'
+    }
+  },
   { 
     path: '*', 
     redirect: '/not-found' ,

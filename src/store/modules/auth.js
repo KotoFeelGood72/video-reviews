@@ -25,7 +25,7 @@ export default {
             try {
                 const response = await axios.post('login/', user);
                 commit('setUser', response.data.user)
-                commit('setUser', response.data.result)
+                // commit('setUser', response.data.result)
 
                 if(response.data.status === true && response.data.auth === true) {
                     console.log('Good login', response.data.status)
@@ -65,6 +65,6 @@ export default {
             } catch (error) {
                 console.log(error);
             }
-        }
+        },
     }
 }
