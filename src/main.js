@@ -7,9 +7,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
-import axios from 'axios';
+// import axios from 'axios';
 
-axios.defaults.baseURL = 'https://w3studio.pro/api/v1/'
+// axios.defaults.baseURL = 'https://w3studio.pro/api/v1/'
 
 // Установите плагины BootstrapVue и IconsPlugin
 Vue.use(BootstrapVue);

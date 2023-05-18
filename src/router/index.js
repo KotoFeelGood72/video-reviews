@@ -34,13 +34,13 @@ const routes = [
       layout: 'default-layout'
     }
   },
-  {
-    path: '/reviews', 
-    component: () => import('@/views/api/module-reviews.vue'),
-    meta: {
-      layout: 'empty-layout'
-    }
-  },
+  // {
+  //   path: '/reviews', 
+  //   component: () => import('@/views/api/module-reviews.vue'),
+  //   meta: {
+  //     layout: 'empty-layout'
+  //   }
+  // },
   {
     path: '/admin/dashboard', 
     component: () => import('@/views/admin/AdminDashboard.vue'),

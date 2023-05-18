@@ -1,6 +1,6 @@
 <template>
   <section class="register auth">
-    <form class="form-register" @submit.prevent="authUser">
+    <form class="form-register" @submit.prevent="login">
       <h3>Авторизация</h3>
       <div class="form-group">
         <input type="email" class="form-control" placeholder="Ваш E-Mail" v-model.trim="form.email" :class="$v.form.email.$error ? 'is-invalid' : ''"/>
@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
 import { validationMixin } from 'vuelidate';
 import { required, email, minLength } from 'vuelidate/lib/validators';
 
@@ -56,26 +55,43 @@ export default {
       },
     },
   },
-  computed: {
-    ...mapGetters(['getUser']),
-  },
+  // computed: {
+  //   ...mapGetters(['getUser']),
+  // },
   methods: {
-    ...mapActions(['postUser']),
-    authUser() {
-      this.$v.form.$touch()
+    // ...mapActions(['postUser']),
+    // async login() {
+    //   this.$v.form.$touch()
 
-      if(this.$v.form.$error) {
-        console.log('Validation false')
-      } else {
-        const formData = {
-          email: this.form.email,
-          password: this.form.password,
-        };
-        this.postUser(formData);
-        console.log(formData)
-      }
+    //   if(this.$v.form.$error) {
+    //     console.log('Validation false')
+    //   } else {
+    //     const formData = {
+    //       email: this.form.email,
+    //       password: this.form.password,
+    //     };
+    //     await this.$store.dispatch('login', formData)
+    //     console.log(formData)
+    //   }
       
-    },
+    // },
+
+    login() {
+      fetch("https://roblitetmoub.beget.app/api/v1/login", {
+        method: "post",
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          email: this.form.email,
+          password: this.form.password
+        })
+      }).
+        then(res => res.json()).
+        then(data => {
+          console.log(data)
+      });
+    }
   },
 };
 </script>
