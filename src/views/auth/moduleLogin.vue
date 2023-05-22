@@ -30,11 +30,6 @@
 <script>
 import { validationMixin } from 'vuelidate';
 import { required, email, minLength } from 'vuelidate/lib/validators';
-// import { mapActions } from 'vuex'
-
-
-
-
 
 export default {
   mixins: [validationMixin],
@@ -60,51 +55,18 @@ export default {
       },
     },
   },
-  // computed: {
-  //   ...mapGetters(['getUser']),
-  // },
   methods: {
-    // ...mapActions(['login']),
     async login() {
-      // const formData = {
-      //   email: this.form.email,
-      //   password: this.form.password
-      // }
-      // this.$v.form.$touch()
-      // const response = await axios.post('login', {
-      //   email: this.form.email,
-      //   password: this.form.password,
-      // })
-      // if(!this.$v.form.$error) {
-      // } else {
-      //   console.log('Validation false')
-      // }
-      // localStorage.setItem('token', response.data.token)
-      // console.log(response.data)
-
-      console.log(this.form.email)
-
-      // this.$store.dispatch('login', { formData });
-
-      fetch("https://w3studio.pro/api/v1/login", {
-        method: "post",
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-          email:"artem25md@yandex.com",
-          password: "52Amolim"
-        }),
-      mode: "cors",
-      credentials: "include"
-      }).
-        then(res => res.json()).
-        then(data => {
-          console.log(data)
-      });
-
-
-      // this.$store.dispatch('login', {email: this.form.email, password: this.form.password})
+      const formData = {
+        email: this.form.email,
+        password: this.form.password
+      }
+      this.$v.form.$touch()
+      if(!this.$v.form.$error) {
+        this.$store.dispatch('signin', formData);
+      } else {
+        console.log('Validation false')
+      }
     },
 
   },

@@ -1,70 +1,53 @@
-// import router from '@/router'
-// import axios from 'axios'
+import router from '@/router'
+import axios from 'axios'
 
 export default {
     state: {
-        exit: {},
-        auth: {},
         user: null,
-        token: null
+        auth: false,
     },
     mutations: {
-        exitUser(state, exit) {
-            state.exit = exit
+        REGISTER_USER() {
+
         },
-        setUser(state, { user, token }) {
-            state.user = user;
-            state.token = token;
-            // localStorage.setItem('token', token);
-            // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        SET_USER(state, {user, auth}) {
+            state.user = user
+            state.auth = auth
+            localStorage.setItem('auth', true)
+        },
+        CLEAR_USER(state) {
+            state.user = null
+            state.auth = false;
+            localStorage.setItem('auth', false)
         }
     },
     getters: {
-        // getUser(state) {
-        //     return state.user
-        // }
+        isAuthenticated(state) {
+            return state.auth
+        }
     },
     actions: {
-        // async login({ commit }, user) {
-        //     try {
-        //       const response = await axios.post('test', user);
-        //       const token = response.data.info.token; // Предположим, что токен возвращается в поле "token" объекта ответа
-        //       console.log(response.data, user, token)
-        //       commit('setUser', user);
-        //     } catch (error) {
-        //       console.error(error); // Отображение ошибки в консоли для отладки
-        //       // Обработка ошибки
-        //     }
-        //   }
+        async signin({commit}, user) {
+            const response = await axios.post('login', user, { withCredentials: true })
+            const auth = response.data.auth
+            const users = response.data.info.user
 
-        // async resiterUser({commit}, user) {
-        //     try {
-        //         const response = await axios.post('register/', user);
-        //         commit('setUser', response.data.user)
-        //         commit('setUser', response.data.result)
+            commit('SET_USER', { user: users, auth})
+            if(response.data.auth) {
+                router.push('/admin/dashboard')
+            }
 
-        //         if(response.data.status === true && response.data.auth === true) {
-        //             console.log('Good login', response.data.status)
-        //             router.push('/admin/dashboard/');
-        //         }
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-            
-        // },
-        
-        // async userExit({commit}) {
-        //     try {
-        //         const response = await axios.post('logout/')
-        //         commit('exitUser', response.data)
+        },
+        async register({commit}, user) {
+            const response = await axios.post('register', user, { withCredentials: true })
+            const auth = response.data.auth
+            const users = response.data.info.user
 
-        //         if(response.data.status === true) {
-        //             console.log('Good logout', response.data.status)
-        //             router.push('/');
-        //         }
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // },
+            commit('REGISTER_USER', { user: users, auth})
+            if(response.data.auth) {
+                router.push('/register/confirm')
+            }
+
+        }
     }
 }

@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
 import { validationMixin } from 'vuelidate';
 import { required, email, sameAs, minLength } from 'vuelidate/lib/validators';
 
@@ -73,14 +72,9 @@ export default {
       }
     },
   },
-  computed: {
-    ...mapGetters(['getUser']),
-  },
   methods: {
-    ...mapActions(['resiterUser']),
     registerUser() {
       this.$v.form.$touch()
-
       if(this.$v.form.$error) {
         console.log('Validation false')
       } else {
@@ -90,7 +84,7 @@ export default {
           password: this.form.password,
           confirm: this.form.confirm,
         };
-        this.resiterUser(formData);
+        this.$store.dispatch('register', formData);
         console.log(formData)
 
       }

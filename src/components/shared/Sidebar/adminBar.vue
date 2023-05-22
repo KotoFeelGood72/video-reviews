@@ -10,25 +10,23 @@
             </li>
         </ul>
       </nav>
-      <b-button @click="handleUserExit">Выйти</b-button>
+      <b-button @click="logout">Выйти</b-button>
   </div>
 </template>
 
 <script>
-  // import { mapActions } from 'vuex'
+  import router from '@/router';
   import SidebarNav from './SidebarNav';
   export default {
     data() {
       return {
         SidebarNav,
-        ex: {},
       }
     },
     methods: {
-      // ...mapActions(['userExit']),
-      async handleUserExit() {
-        // this.userExit(this.ex);
-        this.$store.dispatch('userExit', {})
+      logout() {
+        this.$store.commit('CLEAR_USER')
+        router.push('/')
       }
     }
   }
