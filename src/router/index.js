@@ -11,7 +11,7 @@ const routes = [
     path: '/embed', 
     component: () => import('@/views/VideoEmbed.vue'),
     meta: {
-      layout: 'empty-layout',
+      layout: 'default-layout',
       requiresAuth: true
     }
   },

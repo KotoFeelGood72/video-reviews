@@ -11,6 +11,12 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://w3studio.pro/api/v1/'
 
+const auth = localStorage.getItem('auth');
+if (auth) {
+  store.commit('SET_USER', { user: null, auth: JSON.parse(auth) });
+}
+
+
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 

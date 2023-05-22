@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkvideo_reviews"]=self["webpackChunkvideo_reviews"]||[]).push([[26],{3026:function(e,t,u){u.r(t),u.d(t,{default:function(){return f}});var s=function(){var e=this,t=e._self._c;return t("div",{staticClass:"empty-layout"},[e._t("default")],2)},a=[],n={},i=n,l=u(1001),r=(0,l.Z)(i,s,a,!1,null,"5af44faa",null),f=r.exports}}]);
-//# sourceMappingURL=26.dfca000c.js.map
