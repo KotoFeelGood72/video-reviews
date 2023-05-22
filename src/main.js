@@ -11,16 +11,6 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://w3studio.pro/api/v1/'
 
-import initWidget from './modules/video.js'
-
-// Получите элемент DOM на сайте, к которому вы хотите подключить виджет
-const widgetElement = document.getElementById('video')
-
-// Проверьте, что элемент существует, прежде чем инициализировать виджет
-if (widgetElement) {
-  initWidget(widgetElement)
-}
-
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
