@@ -3,7 +3,6 @@
     <h1>Введите код потверждения</h1>
     <pincode-input
       v-model="$v.code.$model"
-      placeholder="0"
       :length="6"
       class="pincode-input"
       @input="sendConfirm"
@@ -35,7 +34,7 @@
     methods: {
       async sendConfirm() {
         if(this.$v.code.$model.length === 6) {
-          const response = await axios.post('register/confirm', this.code)
+          const response = await axios.post('register/confirm', {confirm: this.code})
           console.log('Good', response)
         }
       }
