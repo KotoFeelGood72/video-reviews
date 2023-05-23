@@ -19,6 +19,7 @@
   import PincodeInput from 'vue-pincode-input';
   import { validationMixin } from 'vuelidate';
   import { required, minLength } from 'vuelidate/lib/validators';
+  import router from '@/router';
   export default {
     mixins: [validationMixin],
     directives: {
@@ -87,13 +88,12 @@
             localStorage.setItem('lockTime', newLockTime);
             this.startTimer();
           }
-        } else {
-          console.log('no ok')
         }
       },
       async sendConfirm() {
         if (this.$v.code.$model.length === 6) {
           await axios.post('register/confirm', { code: this.code });
+          router.push('/admin/dashboard')
         }
       },
     },
