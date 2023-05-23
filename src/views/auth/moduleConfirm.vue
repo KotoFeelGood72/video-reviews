@@ -6,6 +6,7 @@
       :length="6"
       class="pincode-input"
       @input="sendConfirm"
+      v-focus
     />
   </div>
 </template>
@@ -17,6 +18,13 @@
   import { required, minLength } from 'vuelidate/lib/validators';
   export default {
     mixins: [validationMixin],
+    directives: {
+      focus: {
+        inserted(el) {
+          el.focus
+        }
+      }
+    },
     components: {
       PincodeInput
     },
