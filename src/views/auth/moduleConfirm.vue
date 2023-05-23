@@ -42,7 +42,7 @@
     methods: {
       async sendConfirm() {
         if(this.$v.code.$model.length === 6) {
-          const response = await axios.post('register/confirm', {confirm: this.code})
+          const response = await axios.post('register/confirm', {code: this.code})
           console.log('Good', response)
         }
       }
