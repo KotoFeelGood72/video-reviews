@@ -30,8 +30,7 @@ export default {
         async signin({commit}, user) {
             const response = await axios.post('login', user, { withCredentials: true })
             const auth = response.data.auth
-            const users = response.data.info.user
-
+            const users = response.data.user.user
             commit('SET_USER', { user: users, auth})
             if(response.data.auth) {
                 router.push('/admin/dashboard')
@@ -41,7 +40,7 @@ export default {
         async register({commit}, user) {
             const response = await axios.post('register', user, { withCredentials: true })
             const auth = response.data.auth
-            const users = response.data.info.user
+            const users = response.data.user.user
 
             commit('REGISTER_USER', { user: users, auth})
             if(response.data.auth) {

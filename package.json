@@ -10,8 +10,6 @@
   "dependencies": {
     "@popperjs/core": "^2.11.7",
     "axios": "^1.4.0",
-    "bootstrap": "^5.2.3",
-    "bootstrap-vue": "^2.23.1",
     "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.8.3",
     "plyr": "^3.7.8",
@@ -27,13 +25,17 @@
     "@babel/core": "^7.21.8",
     "@babel/eslint-parser": "^7.12.16",
     "@babel/preset-env": "^7.21.5",
+    "@iconify/vue2": "^2.1.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "autoprefixer": "^10.4.14",
     "deepmerge": "^4.3.1",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "postcss": "^8.4.24",
     "sass": "^1.32.13",
+    "tailwindcss": "^3.3.2",
     "vue-template-compiler": "^2.7.14"
   },
   "eslintConfig": {

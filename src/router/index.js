@@ -8,50 +8,43 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/embed', 
-    component: () => import('@/views/VideoEmbed.vue'),
-    meta: {
-      layout: 'default-layout',
-      requiresAuth: true
-    }
-  },
-  {
     path: '/register', 
     component: () => import('@/views/auth/moduleRegister.vue'),
     meta: {
-      layout: 'default-layout',
-      requiresAuth: false
+      layout: 'empty-layout',
+      // requiresAuth: false
     }
   },
   {
     path: '/login', 
     component: () => import('@/views/auth/moduleLogin.vue'),
     meta: {
-      layout: 'default-layout',
-      requiresAuth: false
+      layout: 'empty-layout',
+      // requiresAuth: false
     }
   },
   {
     path: '/not-found', 
     component: () => import('@/views/not-found.vue'),
     meta: {
-      layout: 'default-layout',
+      layout: 'empty-layout',
+      // requiresAuth: false
+    }
+  },
+  {
+    path: '/admin/dashboard', 
+    component: () => import('@/components/admin/admin-board.vue'),
+    meta: {
+      layout: 'admin-layout',
       requiresAuth: false
     }
   },
-  // {
-  //   path: '/reviews', 
-  //   component: () => import('@/views/api/module-reviews.vue'),
-  //   meta: {
-  //     layout: 'empty-layout'
-  //   }
-  // },
   {
-    path: '/admin/dashboard', 
-    component: () => import('@/views/admin/AdminDashboard.vue'),
+    path: '/admin/user', 
+    component: () => import('@/components/admin/admin-user.vue'),
     meta: {
       layout: 'admin-layout',
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
@@ -67,15 +60,16 @@ const routes = [
     redirect: '/not-found' ,
     meta: {
       layout: 'default-layout',
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
     path: '/',
     redirect: '/register',
-    // meta: {
-    //   layout: 'empty-layout'
-    // }
+    meta: {
+      layout: 'empty-layout',
+      // requiresAuth: false
+    }
   }
 ];
 

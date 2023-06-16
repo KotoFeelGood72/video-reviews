@@ -6,16 +6,10 @@
 </template>
 
 <script>
-    import HeaderDefault from '@/components/shared/Header/HeaderDefault'
+    import HeaderDefault from '@/components/Header/HeaderDefault'
     export default {
         components: {
             HeaderDefault,
         }    
     }
 </script>
-
-<style lang="scss" scoped>
-.layout-default {
-	background-color: #0F0F23;
-}
-</style>

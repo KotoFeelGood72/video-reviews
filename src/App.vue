@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class=" bg-gray-800 min-h-[100vh]">
 		<component :is="layout">
 			<router-view></router-view>
 		</component>

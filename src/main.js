@@ -1,24 +1,18 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import "plyr/dist/plyr.css";
 import store from './store';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import './assets/css/main.css'
+
+import GlobalIcon from './components/shared/global-icon.vue';
 
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://w3studio.pro/api/v1/'
 
+Vue.component('GlobalIcon', GlobalIcon)
 
 
-
-
-
-
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
 
 new Vue({
   router,

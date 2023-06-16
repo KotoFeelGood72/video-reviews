@@ -1,22 +1,20 @@
 <template>
-  <div class="admin-layout container-fluid">
+  <div class="admin-layout container-fluid flex items-start flex-wrap w-full h-[100vh] overflow-y-auto">
+      <admin-header/>
+      <admin-bar class="w-full"></admin-bar>
       <slot></slot>
   </div>
 </template>
 
 <script>
+  import adminBar from '@/components/Sidebar/adminBar.vue'
+  import AdminHeader from '@/components/Header/AdminHeader.vue';
+
   export default {
-    
+    components: {adminBar, AdminHeader}
   }
 </script>
 
-<style lang="scss" scoped>
-  .admin-layout {
-    background-color: #0F0F23;
-    height: 100vh;
-    padding: 20px 40px;
-    :deep(.header) {
-      border-radius: 5px;
-    }
-  }
-</style>
+
+
+
